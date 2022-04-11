@@ -1,0 +1,16 @@
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 20px;
+    align-items: center;
+  }
+  
+  header ul {
+    display: flex;
+  }
+  
+  header ul li {
+    list-style-type: none;
+    padding-left: 20px;
+  }
