@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
-import { loginSuccess } from "../../features/login/loginSlice";
+import { loginSuccess, logoutSuccess } from "../../features/login/loginSlice";
 import { getUserProfile } from '../../features/user/userAction';
 import './Header.css'
 import { Container, NavDropdown, Navbar, Nav, Modal } from "react-bootstrap";
@@ -11,7 +11,7 @@ import { userLogout } from "../../api/userApi";
 
 
 export default function Header() {
-    
+
     // useNavigate is the new version of useHistory
     const dispatch = useDispatch();
     const { isAuth } = useSelector((state) => state.login);
@@ -22,7 +22,7 @@ export default function Header() {
         !user.id && dispatch(getUserProfile())
 
         !isAuth && sessionStorage.getItem('authToken') && dispatch(loginSuccess())
-        
+
     }, [dispatch, isAuth, user.id]);
 
     // login Model Toggle
@@ -34,13 +34,14 @@ export default function Header() {
 
     // logout function
     const logMeOut = () => {
-        userLogout();
-        sessionStorage.removeItem('authToken');
-        
+        userLogout().then(()=>{
+            sessionStorage.removeItem('authToken');
+            dispatch(logoutSuccess());
+        });
         //navigate('/');
     }
 
-    
+
 
     return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -67,8 +68,8 @@ export default function Header() {
                         <Nav.Link>Contact</Nav.Link>
                     </LinkContainer>
 
-                    {   
-                        isAuth === true ? 
+                    {
+                        isAuth === true ?
                         <NavDropdown title="Person Name" id="collasible-nav-dropdown">
                             <NavDropdown.Item  to="Dashboard">
                                 Dashboard
@@ -83,7 +84,7 @@ export default function Header() {
             </Navbar.Collapse>
         </Container>
 
-        <Modal show={modelOpen} onHide={handleModelClose}>
+        <Modal show={modelOpen && !isAuth} onHide={handleModelClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Admin Login</Modal.Title>
             </Modal.Header>
