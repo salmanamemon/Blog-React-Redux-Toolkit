@@ -8,6 +8,7 @@ import { Container, NavDropdown, Navbar, Nav, Modal } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap'
 import Login from '../login/Login';
 import { userLogout } from "../../api/userApi";
+import { Link } from 'react-router-dom';
 
 
 export default function Header() {
@@ -21,7 +22,7 @@ export default function Header() {
     useEffect(() => {
         !user.id && dispatch(getUserProfile())
 
-        !isAuth && sessionStorage.getItem('authToken') && dispatch(loginSuccess())
+        !isAuth && sessionStorage.getItem('authToken') && dispatch(loginSuccess()) && handleModelClose()
 
     }, [dispatch, isAuth, user.id]);
 
@@ -37,6 +38,7 @@ export default function Header() {
         userLogout().then(()=>{
             sessionStorage.removeItem('authToken');
             dispatch(logoutSuccess());
+            handleModelClose();
         });
         //navigate('/');
     }
@@ -44,7 +46,7 @@ export default function Header() {
 
 
     return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="bg-white" variant="light">
         <Container>
             <Navbar.Brand>
                 <LinkContainer to="/">
@@ -71,7 +73,7 @@ export default function Header() {
                     {
                         isAuth === true ?
                         <NavDropdown title="Person Name" id="collasible-nav-dropdown">
-                            <NavDropdown.Item  to="Dashboard">
+                            <NavDropdown.Item as={Link} to="Dashboard">
                                 Dashboard
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
@@ -84,7 +86,7 @@ export default function Header() {
             </Navbar.Collapse>
         </Container>
 
-        <Modal show={modelOpen && !isAuth} onHide={handleModelClose}>
+        <Modal show={modelOpen && !isAuth } onHide={handleModelClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Admin Login</Modal.Title>
             </Modal.Header>
