@@ -6,15 +6,15 @@ import {
     fetchSinglePostLoading,
     fetchSinglePostSuccess,
     fetchSinglePostFail,
-    replyPostLoading,
-    replyPostSuccess,
-    replyPostFail,
-    closePostLoading,
-    closePostSuccess,
-    closePostFail
-} from './PostsSlice';
+    replyTicketLoading,
+    replyTicketSuccess,
+    replyTicketFail,
+    closeTicketLoading,
+    closeTicketSuccess,
+    closeTicketFail
+} from './postsSlice';
 
-import { getAllPosts, getSinglePost, updateReplyPost, updatePostStatusClosed } from '../../api/PostApi';
+import { getAllPosts, getSinglePost } from './postsApi';
 
 export const fetchAllPosts = () => async (dispatch) => {
     dispatch(fetchPostLoading());
@@ -33,7 +33,7 @@ export const filterSearchPost = (str) => async (dispatch) => {
     dispatch(searchPosts(str))
 }
 
-// Action For Single Post
+// Action For Single Ticket
 export const fetchSinglePost = (id) => async (dispatch) => {
     dispatch(fetchSinglePostLoading());
     // Fetch the Data From API
@@ -47,42 +47,42 @@ export const fetchSinglePost = (id) => async (dispatch) => {
     }
 }
 
-// Action For Replying on single Post
-export const replyOnPost = (id, msgObj) => async (dispatch) => {
-    dispatch(replyPostLoading());
-    // Fetch the Data From API
-    try{
-        const result = await updateReplyPost(id, msgObj);
+// Action For Replying on single Ticket
+// export const replyOnTicket = (id, msgObj) => async (dispatch) => {
+//     dispatch(replyTicketLoading());
+//     // Fetch the Data From API
+//     try{
+//         const result = await updateReplyTicket(id, msgObj);
 
-        console.log(result.status);
-        if(result.status === "error"){
-          return dispatch(replyPostFail(result.message));
-        }
-        dispatch(fetchSinglePost(id));
-        dispatch(replyPostSuccess(result.message));
+//         console.log(result.status);
+//         if(result.status === "error"){
+//           return dispatch(replyTicketFail(result.message));
+//         }
+//         dispatch(fetchSingleTicket(id));
+//         dispatch(replyTicketSuccess(result.message));
         
-    } catch(error){
-        console.log(error)
-        dispatch(replyPostFail(error));
-    }
-}
+//     } catch(error){
+//         console.log(error)
+//         dispatch(replyTicketFail(error));
+//     }
+// }
 
-// Action For Replying on single Post
-export const closePost = (id) => async (dispatch) => {
-    dispatch(closePostLoading());
-    // Fetch the Data From API
-    try{
-        const result = await updatePostStatusClosed(id);
+// Action For Replying on single Ticket
+// export const closeTicket = (id) => async (dispatch) => {
+//     dispatch(closeTicketLoading());
+//     // Fetch the Data From API
+//     try{
+//         const result = await updateTicketStatusClosed(id);
 
-        console.log(result.status);
-        if(result.status === "error"){
-          return dispatch(closePostFail(result.message));
-        }
-        dispatch(fetchSinglePost(id));
-        dispatch(closePostSuccess(result.message));
+//         console.log(result.status);
+//         if(result.status === "error"){
+//           return dispatch(closeTicketFail(result.message));
+//         }
+//         dispatch(fetchSingleTicket(id));
+//         dispatch(closeTicketSuccess(result.message));
         
-    } catch(error){
-        console.log(error)
-        dispatch(closePostFail(error));
-    }
-}
+//     } catch(error){
+//         console.log(error)
+//         dispatch(closeTicketFail(error));
+//     }
+// }

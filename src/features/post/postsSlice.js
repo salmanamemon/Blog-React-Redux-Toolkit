@@ -1,24 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    Posts: [],
+    posts: [],
     isLoading: false,
     error: "",
-    replyPostError: "",
+    replyTicketError: "",
     searchPostList: [],
     selectedPost: {},
     replyMsg: "",
 }
 
-const PostListSlice = createSlice({
-    name: "PostList",
+const postListSlice = createSlice({
+    name: "postList",
     initialState,
     reducers:{
         fetchPostLoading: (state) => {
             state.isLoading = true;
         },
         fetchPostSuccess: (state, action) => {
-            state.Posts = action.payload;
+            state.posts = action.payload;
             state.searchPostList = action.payload;
             state.isLoading = false;
         },
@@ -26,9 +26,9 @@ const PostListSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
-        searchPosts: (state, action) => {
+        searchPost: (state, action) => {
 
-            state.searchPostList = state.Posts.filter(row =>{
+            state.searchPostList = state.posts.filter(row =>{
                 if(!action.payload) return row
 
                 return row.subject.toLowerCase().includes(action.payload.toLowerCase());
@@ -46,39 +46,39 @@ const PostListSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
-        replyPostLoading: (state) => {
+        replyTicketLoading: (state) => {
             state.isLoading = true;
         },
-        replyPostSuccess: (state, action) => {
+        replyTicketSuccess: (state, action) => {
             state.isLoading = false;
             state.error = "";
             state.replyMsg = action.payload;
         },
-        replyPostFail: (state, action) => {
+        replyTicketFail: (state, action) => {
             state.isLoading = false;
-            state.replyPostError = action.payload;
+            state.replyTicketError = action.payload;
         },
-        closePostLoading: (state) => {
+        closeTicketLoading: (state) => {
             state.isLoading = true;
         },
-        closePostSuccess: (state, action) => {
+        closeTicketSuccess: (state, action) => {
             state.isLoading = false;
             state.error = "";
             state.replyMsg = action.payload;
         },
-        closePostFail: (state, action) => {
+        closeTicketFail: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
         resetResponseMsg: (state) => {
             state.isLoading = false;
-            state.replyPostError = "";
+            state.replyTicketError = "";
             state.replyMsg = "";
         },
     },
 });
 
-const { reducer, actions } = PostListSlice;
+const { reducer, actions } = postListSlice;
 
 
 export const { 
@@ -89,12 +89,12 @@ export const {
     fetchSinglePostLoading,
     fetchSinglePostSuccess,
     fetchSinglePostFail,
-    replyPostLoading,
-    replyPostSuccess,
-    replyPostFail,
-    closePostLoading,
-    closePostSuccess,
-    closePostFail,
+    replyTicketLoading,
+    replyTicketSuccess,
+    replyTicketFail,
+    closeTicketLoading,
+    closeTicketSuccess,
+    closeTicketFail,
     resetResponseMsg,
 } = actions;
 

@@ -3,11 +3,11 @@ import axios from "axios";
 export const getAllPosts = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const result = await axios.get('http://ticket.salmanaziz.tech/api/v1/ticket/tickets.php',
+            const result = await axios.get('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/posts.php',
             {
                 headers:{
                     "content-type": "application/json; charset=UTF-8",
-                    Authorization: sessionStorage.getItem("authToken"),
+                    //Authorization: sessionStorage.getItem("authToken"),
                 },
             });
             resolve(result);
@@ -24,7 +24,7 @@ export const getSinglePost = (id) => {
             {
                 headers:{
                     "content-type": "application/json; charset=UTF-8",
-                    Authorization: sessionStorage.getItem("authToken"),
+                    //Authorization: sessionStorage.getItem("authToken"),
                 },
             });
             resolve(result);

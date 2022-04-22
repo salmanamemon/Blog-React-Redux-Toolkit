@@ -47,7 +47,7 @@ export default function Header() {
 
     return (
     <Navbar collapseOnSelect expand="lg" bg="bg-white" variant="light">
-        <Container>
+        <Container fluid>
             <Navbar.Brand>
                 <LinkContainer to="/">
                     <Nav.Link>Blog Site Name</Nav.Link>

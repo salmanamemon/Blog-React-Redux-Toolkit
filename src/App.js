@@ -21,8 +21,8 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/posts/:id" element={<Posts />} />
+          {/* <Route path="/blogs" element={<Blogs />} /> */}
+          <Route path="/post/:tId" element={<Posts />} />
           { isAuth ? <Route exact path="/dashboard" element={<Dashboard />} /> : ""  }
           <Route path="*" element={<PageNotFound />} />
         </Routes>
