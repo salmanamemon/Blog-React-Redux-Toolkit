@@ -30,13 +30,14 @@ const validationSchema = yup.object({
 
 const ContactForm = () => {
     
+    const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState(null);
     const [error, setError] = useState(null);
 
     const onSubmit = async (values) => {
         //const { ...data } = values;
         const form = values;
-        const isSubmitting = true;
+        setIsLoading(current => !current);
         //console.log(form);
 
         const response = await axios
@@ -50,16 +51,16 @@ const ContactForm = () => {
         if (response && response.data) {
             setError(null);
             setSuccess(<Alert variant={response.data.status === 'error' ? 'danger' : 'success'}>{response.data.message}</Alert>);
-            
+            setIsLoading(current => !current)
             formik.resetForm();
         }
     };
 
     const formik = useFormik({
         initialValues: {
-            name: "Salman Aziz",
-            phone: "05555555",
-            email: "memon.salman@gmail.com",
+            name: "",
+            phone: "",
+            email: "",
             message: "",
         },
         validateOnBlur: true,
@@ -156,7 +157,7 @@ const ContactForm = () => {
                 {!error && <div>{success ? success : ""}</div>}
                 {!success && <div>{error ? error : ""}</div>}
                 <Button className="mt-3" type="submit" disabled={!formik.isValid}>Send</Button>
-                {<Spinner variant="primary" animation="border" />}
+                {isLoading && <Spinner variant="primary" animation="border" />}
             </Form>
             <p className="mt-4">By submitting the form, i acknowledge to agree to privacy policy.<br />Fields marks with asterik (*) are required.</p>
         </>
