@@ -63,7 +63,7 @@ export default function Header() {
                     <LinkContainer to="About">
                         <Nav.Link>About</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="Posts">
+                    <LinkContainer to="Blogs">
                         <Nav.Link>Blogs</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="Contact">

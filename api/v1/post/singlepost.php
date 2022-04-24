@@ -13,7 +13,7 @@ try{
 	$query->execute();
 	$results = $query->fetchAll();
 	foreach ( $results as $row ) {
-		$data1 = array('id' => $row['id'], 'title' => $row['title'], 'text' => $row['text'], 'status' => $row['status'], 'image' => $row['image']);
+		$data1 = array('id' => $row['id'], 'title' => $row['title'], 'text' => $row['text'], 'status' => $row['status'], 'image' => $row['image'], 'addedAt' => $row['addedAt']);
 	}
 
 	

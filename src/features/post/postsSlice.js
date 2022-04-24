@@ -7,6 +7,7 @@ const initialState = {
     replyTicketError: "",
     searchPostList: [],
     selectedPost: {},
+    relatedPost: [],
     replyMsg: "",
 }
 
@@ -43,6 +44,18 @@ const postListSlice = createSlice({
             state.error = "";
         },
         fetchSinglePostFail: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+        fetchRelatedPostLoading: (state) => {
+            state.isLoading = true;
+        },
+        fetchRelatedPostSuccess: (state, action) => {
+            state.relatedPost = action.payload;
+            state.isLoading = false;
+            state.error = "";
+        },
+        fetchRelatedPostFail: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
@@ -89,6 +102,9 @@ export const {
     fetchSinglePostLoading,
     fetchSinglePostSuccess,
     fetchSinglePostFail,
+    fetchRelatedPostLoading,
+    fetchRelatedPostSuccess,
+    fetchRelatedPostFail,
     replyTicketLoading,
     replyTicketSuccess,
     replyTicketFail,

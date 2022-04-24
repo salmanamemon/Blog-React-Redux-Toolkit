@@ -28,7 +28,7 @@ export default function Footer() {
                   </LinkContainer>
                 </li>
                 <li>
-                  <LinkContainer to="Posts">
+                  <LinkContainer to="Blogs">
                       <Nav.Link>Blogs</Nav.Link>
                   </LinkContainer>
                 </li>
@@ -44,10 +44,10 @@ export default function Footer() {
             <div>
               <h3 className="footer-heading mb-4">Connect With Us</h3>
               <p>
-                <Link to="#"><FacebookFilled className="p-2"/></Link>
-                <Link to="#"><TwitterSquareFilled className="p-2" /></Link>
-                <Link to="#"><InstagramFilled className="p-2" /></Link>
-                <Link to="#"><MailFilled className="p-2" /></Link>
+                <Link rel="noopener noreferrer" target="_blank" to="#"><FacebookFilled className="p-2"/></Link>
+                <Link rel="noopener noreferrer" target="_blank" to="#"><TwitterSquareFilled className="p-2" /></Link>
+                <Link rel="noopener noreferrer" target="_blank" to="#"><InstagramFilled className="p-2" /></Link>
+                <Link rel="noopener noreferrer" target="_blank" to="#"><MailFilled className="p-2" /></Link>
               </p>
             </div>
           </Col>
@@ -55,9 +55,7 @@ export default function Footer() {
         <Row>
           <Col className="text-center" md={12} >
             <p>
-            
-            Copyright © <script>document.write(new Date().getFullYear());</script>2022 All rights reserved | This template is made with &hearts; by <a href="https://salmanaziz.tech" target="_blank">SalmanAziz</a>
-            
+              Copyright © <script>document.write(new Date().getFullYear());</script>2022 All rights reserved | This template is made with &hearts; by <Link rel="noopener noreferrer" target="_blank" to="https://salmanaziz.tech">SalmanAziz</Link>
             </p>
           </Col>
         </Row>

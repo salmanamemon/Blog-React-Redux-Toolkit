@@ -6,6 +6,9 @@ import {
     fetchSinglePostLoading,
     fetchSinglePostSuccess,
     fetchSinglePostFail,
+    fetchRelatedPostLoading,
+    fetchRelatedPostSuccess,
+    fetchRelatedPostFail,
     replyTicketLoading,
     replyTicketSuccess,
     replyTicketFail,
@@ -14,7 +17,7 @@ import {
     closeTicketFail
 } from './postsSlice';
 
-import { getAllPosts, getSinglePost } from './postsApi';
+import { getAllPosts, getSinglePost, getRelatedPost } from './postsApi';
 
 export const fetchAllPosts = () => async (dispatch) => {
     dispatch(fetchPostLoading());
@@ -44,6 +47,20 @@ export const fetchSinglePost = (id) => async (dispatch) => {
         
     } catch(error){
         dispatch(fetchSinglePostFail(error.message));
+    }
+}
+
+// Action For Related Post
+export const fetchRelatedPost = (id) => async (dispatch) => {
+    dispatch(fetchRelatedPostLoading());
+    // Fetch the Data From API
+    try{
+    const result = await getRelatedPost(id);
+        //console.log(result.data)
+        dispatch(fetchRelatedPostSuccess(result.data));
+        
+    } catch(error){
+        dispatch(fetchRelatedPostFail(error.message));
     }
 }
 

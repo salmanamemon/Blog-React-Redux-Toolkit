@@ -35,6 +35,26 @@ export const getSinglePost = (id) => {
     })
 }
 
+
+export const getRelatedPost = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/relatedpost.php?id='+id,
+            {
+                headers:{
+                    "content-type": "application/json; charset=UTF-8",
+                    //Authorization: sessionStorage.getItem("authToken"),
+                },
+            });
+            resolve(result);
+        } catch (error) {
+            console.log(error.message)
+            reject(error)
+        }
+    })
+}
+
+
 export const updateReplyPost = (id, msgObj) => {
     return new Promise(async (resolve, reject) => {
         try {

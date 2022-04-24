@@ -10,6 +10,7 @@ import Contact from './pages/contact/Contact';
 import Posts from "./pages/post/Posts";
 import Dashboard from "./pages/dashboard/Dashboard";
 import PageNotFound from './pages/pagenotfound/PageNotFound';
+import Blogs from './pages/blogs/Blogs';
 
 function App() {
   const { isAuth } = useSelector((state) => state.login);
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
+          <Route exact path="/blogs" element={<Blogs />} />
           <Route exact path="/contact" element={<Contact />} />
           {/* <Route path="/blogs" element={<Blogs />} /> */}
           <Route path="/post/:tId" element={<Posts />} />

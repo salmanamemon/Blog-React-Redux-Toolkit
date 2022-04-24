@@ -1,0 +1,19 @@
+.comment-history {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .comment-history:nth-child(even) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  
+  .comment {
+    padding: 1rem;
+    width: 80%;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  

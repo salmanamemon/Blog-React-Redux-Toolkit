@@ -1,0 +1,12 @@
+@media (min-width: 768px){
+    .blogsPage .recentPosts {
+        padding: 0;
+    }
+}
+.blogsPage .recentPosts h2{
+    display: none;
+}
+.blogsPage .recentPosts .mb-5{
+    margin-bottom: 0!important;
+}
+.blogsPage .pagination{margin-top: 40px;}

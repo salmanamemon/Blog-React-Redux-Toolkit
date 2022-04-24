@@ -13,7 +13,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
   const {searchPostList, isLoading, error} = useSelector((state)=>state.posts);
   const [currentPage, setCurrentPage] = useState(0);
   const items = searchPostList;
-  //console.log(items);
+  console.log(items);
 
   // Invoke when user click to request another page.
   function handlePageClick({selected: selectedPage}) {
@@ -29,7 +29,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
       <div className='postInner'>
         <Image src={`./uploads/${row.image}`} alt="Mini blog"  fluid />
             <b style={{backgroundColor: row.catColor}} className="postCategory">{row.catName}</b>
-            <div className="post-meta align-items-center text-left justify-content-between postMeta clearfix">
+            <div class="post-meta align-items-center text-left justify-content-between postMeta clearfix">
               <span className="d-inline-block mt-1">By: {row.name}</span> <span className="d-inline-block mt-1">- {new Date(row.addedAt).toLocaleDateString()}</span>
             </div>
             <h3>{row.title}</h3>
@@ -42,8 +42,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
 
   const pageCount = Math.ceil(items.length / PER_PAGE);
   // console.log(pageCount);
-  if(isLoading) return <h3>Loading ...</h3>;
-  if(error) return <h3>{error}</h3>
+ 
 
   return (
     <section className="recentPosts">
@@ -54,7 +53,6 @@ const PaginatedItems = ({ itemsPerPage }) => {
           <Row>{currentPageData}</Row>
       </Container>
       <Container>
-        <hr />
         <ReactPaginate
           breakLabel="..."
           previousLabel="<"
