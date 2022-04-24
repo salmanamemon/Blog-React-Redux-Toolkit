@@ -1,0 +1,14 @@
+.site-section {
+    padding: 2.5em 0;
+}
+.subscribe-1 h2 {
+    font-size: 20px;
+}
+.subscribe-1 input, .subscribe-1 .btn{
+    border-radius: 0;
+}
+@media (min-width: 768px){
+    .site-section {
+        padding: 5em 0;
+    }
+}

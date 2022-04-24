@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { fetchSinglePost } from "../../features/post/postsAction";
 //import { fetchSinglePost, closeTicket } from "../../features/post/postsAction";
 //import { resetResponseMsg } from "../ticket-list/ticketsSlice";
+import './Posts.css';
 
 // const ticket = tickets[0];
 const Posts = () => {
@@ -14,6 +15,7 @@ const Posts = () => {
   const { tId } = useParams();
   const dispatch = useDispatch();
   const { isLoading, error, selectedPost, replyMsg, replyTicketError } = useSelector((state)=>state.posts);
+  const catArray = selectedPost.category;
 
   //console.log('TID'+tId);
 
@@ -28,7 +30,25 @@ const Posts = () => {
   //, [tId, replyMsg, replyPostError, dispatch]);
 
   return (
-    <Container>
+    <>
+    <Container className="bannerFull p-0" fluid style={{
+      backgroundImage: `url(../uploads/${selectedPost.image})`
+    }}>
+      <Row>
+        <Col md={12}>
+          {/* <b style={{backgroundColor: selectedPost.category.catColor}} className="postCategory">{selectedPost.category.catName}</b> */}
+          {JSON.stringify(catArray)}
+          
+          {/* {catArray.map((row) => 
+            <p>[{row}] {row.id}</p>
+          )} */}
+          <h1>{selectedPost.title}</h1>
+          {/* <div className="post-meta align-items-center text-left justify-content-between postMeta clearfix">
+            <span className="d-inline-block mt-1">By: {selectedPost.author.name}</span> <span className="d-inline-block mt-1">- {new Date(selectedPost.addedAt).toLocaleDateString()}</span>
+          </div> */}
+        </Col>
+      </Row>
+    </Container>
       {/* <Row>
         <Col>
           {isLoading && <Spinner variant="primary" animation="border" />}
@@ -37,14 +57,12 @@ const Posts = () => {
           {replyMsg && <Alert variant="success">{replyMsg}</Alert>}
         </Col>
       </Row> */}
+    <Container>
       <Row>
         <Col className="text-weight-bolder text-secondary">
-          <Image src={`./uploads/${selectedPost.image}`} alt="Mini blog"  fluid />
-          <span>{selectedPost.catName}</span>
-          <h2>{selectedPost.title}</h2>
+          
+          {/* <span>{selectedPost.catName}</span> */}
           <p>{selectedPost.text}</p>
-          <span>{selectedPost.addedAt}</span>
-          <p>{selectedPost.status}</p>
         </Col>
         {/* <Col className="text-right">
           <Button 
@@ -65,6 +83,7 @@ const Posts = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

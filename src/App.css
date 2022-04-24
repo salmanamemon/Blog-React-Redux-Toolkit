@@ -1,8 +1,24 @@
 /* RESET */
+body {
+  line-height: 1.7;
+  color: gray;
+  font-weight: 300;
+  font-size: 1rem;
+  font-family: "Muli",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
 a {
   text-decoration: none;
   color: #000;
 }
 h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5, a, p {
   font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5{color: #000;}
+
+
+p, a{font-size: 1rem;font-weight: 300;}
+
+.bg-light{
+  background-color: #f8f9fa!important;
+  color: gray;
 }

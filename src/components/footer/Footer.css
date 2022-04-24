@@ -1,0 +1,28 @@
+
+.site-footer {
+    padding: 4em 0;
+    background: #333;
+}
+.site-footer .footer-heading {
+    font-size: 16px;
+    color: #fff;
+}
+
+.site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5 {
+    color: #fff;
+}
+.site-footer p {
+    color: #737373;
+}
+.site-footer a {
+    color: #999;
+}
+.site-footer a:hover {
+    color: #fff;
+}
+.mr-2{margin-right: 2rem;}
+@media (min-width: 768px){
+    .site-footer {
+        padding: 5em 0;
+    }
+}

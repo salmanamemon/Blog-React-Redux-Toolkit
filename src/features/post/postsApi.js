@@ -20,7 +20,7 @@ export const getAllPosts = () => {
 export const getSinglePost = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const result = await axios.get('http://ticket.salmanaziz.tech/api/v1/ticket/singleticket.php?id='+id,
+            const result = await axios.get('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/singlepost.php?id='+id,
             {
                 headers:{
                     "content-type": "application/json; charset=UTF-8",
