@@ -25,7 +25,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
   const currentPageData = items
   .slice(offset, offset + PER_PAGE)
   .map((row, index) => 
-    <Col className="mb-5" md={4} key={index} >
+    <Col className="mb-5" md={4} key={row.p_id} >
       <div className='postInner'>
         <Image src={`./uploads/${row.image}`} alt="Mini blog"  fluid />
             <b style={{backgroundColor: row.catColor}} className="postCategory">{row.catName}</b>
@@ -34,7 +34,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
             </div>
             <h3>{row.title}</h3>
             <p className="postText">{row.text.substring(0, 110)}...</p>
-            <Link className="postAnchor" to={`/post/${row.id}`}>Read More</Link>
+            <Link className="postAnchor" to={`/post/${row.p_id}`}>Read More</Link>
       </div>
     </Col>
   );

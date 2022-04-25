@@ -23,13 +23,13 @@ const Hero = () => {
                   searchPostList.length ? (
                     searchPostList.slice(0,5).map((row) => (
                       
-                        <li key={row.id}>
+                        <li key={row.p_id}>
                           
                             <Image src={`./uploads/${row.image}`} alt="Mini blog"  fluid />
                             <div className="heroBannerInner">
                               <div>
                                 <b style={{backgroundColor: row.catColor}}>{row.catName}</b>
-                                <h2><Link to={`/post/${row.id}`}>{row.title}</Link></h2>
+                                <h2><Link to={`/post/${row.p_id}`}>{row.title}</Link></h2>
                                 <span>{new Date(row.addedAt).toLocaleDateString()}</span>
                               </div>
                             </div>

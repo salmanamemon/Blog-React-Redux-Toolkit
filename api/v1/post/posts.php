@@ -10,7 +10,7 @@ try{
 	//$sql = 'SELECT * FROM posts';
 	$sql = 'SELECT *
 	FROM posts p
-	JOIN categories pc ON p.catId=pc.id
+	JOIN categories pc ON p.catId=pc.c_id
 	JOIN members pa ON p.authorId=pa.id';
 
 	$query = $conn->prepare($sql);

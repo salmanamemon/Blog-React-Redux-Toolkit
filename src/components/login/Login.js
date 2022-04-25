@@ -104,7 +104,7 @@ export const Login = () => {
                         <Alert variant="danger">{formik.errors.password}</Alert>
                         : ""}
                         
-                        <Button type="submit" disabled={!formik.isValid}>Login</Button>
+                        <Button className="mt-3" type="submit" disabled={!formik.isValid}>Login</Button>
                         {isLoading && <Spinner variant="primary" animation="border" />}
                     </Form>
                 </Col>

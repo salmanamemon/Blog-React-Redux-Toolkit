@@ -72,7 +72,7 @@ export default function Header() {
 
                     {
                         isAuth === true ?
-                        <NavDropdown title="Person Name" id="collasible-nav-dropdown">
+                        <NavDropdown title={user.name} id="collasible-nav-dropdown">
                             <NavDropdown.Item as={Link} to="Dashboard">
                                 Dashboard
                             </NavDropdown.Item>

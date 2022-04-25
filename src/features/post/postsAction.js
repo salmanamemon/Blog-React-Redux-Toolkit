@@ -33,7 +33,8 @@ export const fetchAllPosts = () => async (dispatch) => {
 }
 
 export const filterSearchPost = (str) => async (dispatch) => {
-    dispatch(searchPosts(str))
+    dispatch(searchPosts(str));
+    console.log(str);
 }
 
 // Action For Single Ticket

@@ -9,21 +9,21 @@ include("../config.php");
 try{
 	$tId = $_GET['id'];
 	// Get Single Post Details
-	$query = $conn->query("select * from posts where id='$tId' LIMIT 1");
+	$query = $conn->query("select * from posts where p_id='$tId' LIMIT 1");
 	$query->execute();
 	$results = $query->fetchAll();
 	foreach ( $results as $row ) {
-		$data1 = array('id' => $row['id'], 'title' => $row['title'], 'text' => $row['text'], 'status' => $row['status'], 'image' => $row['image'], 'addedAt' => $row['addedAt']);
+		$data1 = array('p_id' => $row['p_id'], 'title' => $row['title'], 'text' => $row['text'], 'status' => $row['status'], 'image' => $row['image'], 'addedAt' => $row['addedAt']);
 	}
 
 	
 	$catId = $results[0]['catId'];
 	// Get Category Details
-	$queryCat = $conn->query("select * from categories WHERE id='$catId'");
+	$queryCat = $conn->query("select * from categories WHERE c_id='$catId'");
 	$queryCat->execute();
 	$resultCat = $queryCat->fetchAll();
 	foreach ( $resultCat as $row ) {
-		$dataCat[] = array('id' => $row['id'], 'catName' => $row['catName'], 'catColor' => $row['catColor']);
+		$dataCat[] = array('c_id' => $row['c_id'], 'catName' => $row['catName'], 'catColor' => $row['catColor']);
 	}
 	if($resultCat){
 		$jsonCat = ['category' => $dataCat];
@@ -45,16 +45,18 @@ try{
 	$queryComm = $conn->query("select * from postcomments WHERE postRef='$tId'");
 	$queryComm->execute();
 	$resultComm = $queryComm->fetchAll();
-	foreach ( $resultComm as $row ) {
-		$data2[] = array('id' => $row['id'], 'comment' => $row['comment'], 'sender' => $row['sender'], 'postRef' => $row['postRef'], 'comtAt' => $row['comtAt']);
-	}
 	if($resultComm){
+		foreach ( $resultComm as $row ) {
+			$data2[] = array('com_id' => $row['com_id'], 'comment' => $row['comment'], 'sender' => $row['sender'], 'postRef' => $row['postRef'], 'comtAt' => $row['comtAt']);
+		}
 		$jsonComt = ['comments' => $data2];
 		$fullOutput = array_merge($data1, $jsonComt, $jsonCat, $jsonAuthor); 
 		echo json_encode($fullOutput);
 	}
 	else{
-		echo json_encode($data1);
+		//$jsonComt = ['comments' => $data2];
+		$fullOutput = array_merge($data1, $jsonCat, $jsonAuthor); 
+		echo json_encode($fullOutput);
 	}
 	
 } catch (Exception $e) {
