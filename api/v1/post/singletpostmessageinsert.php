@@ -10,32 +10,31 @@ try{
 	
 	//GET ID from API URL
 	$tId = $_GET['id'];
-
 	// Grab JSON object from Form
 	$data = json_decode(file_get_contents('php://input'), true);
 	// Grab Your Value from Json object
-	$dataMsg=json_encode($data['msgObj']['message']);
+	$dataMsg=json_encode($data['msgObj']['comment']);
 
 	// Replace quotes form the data
-	$message=str_replace('"',"",$dataMsg);
+	$comment=str_replace('"',"",$dataMsg);
 	// Grab Your Value from Json object
 	$dataSender=json_encode($data['msgObj']['sender']);
 	// Replace quotes form the data
 	$sender=str_replace('"',"",$dataSender);
 
-	if($message === ''){
+	if($comment === ''){
 		echo json_encode(array("status" => "error", "message" => 'Message field cannot be empty'));
 	}
 	else{
-		$sqlU = "INSERT INTO ticketconversations
+		$sqlU = "INSERT INTO postcomments
 		SET 
-		message=:message, 
+		comment=:comment, 
 		sender=:sender,
-		ticketRef=:ticketRef";
+		postRef=:postRef";
 		$queryU = $conn->prepare($sqlU);
-		$queryU->bindParam(':message', $message);
+		$queryU->bindParam(':comment', $comment);
 		$queryU->bindParam(':sender', $sender);
-		$queryU->bindParam(':ticketRef', $tId);
+		$queryU->bindParam(':postRef', $tId);
 		if($queryU->execute())
 		{
 			echo json_encode(array("status" => "success", "message" => 'Message added Successfully'));

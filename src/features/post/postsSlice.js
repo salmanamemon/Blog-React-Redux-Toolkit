@@ -8,7 +8,6 @@ const initialState = {
     searchPostList: [],
     selectedPost: {},
     relatedPost: [],
-    comment: "",
     replyMsg: "",
 }
 
@@ -40,6 +39,7 @@ const postListSlice = createSlice({
             state.isLoading = true;
         },
         fetchSinglePostSuccess: (state, action) => {
+            //debugger
             state.selectedPost = action.payload;
             state.isLoading = false;
             state.error = "";
@@ -60,17 +60,17 @@ const postListSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
-        replyTicketLoading: (state) => {
+        addCommentLoading: (state) => {
             state.isLoading = true;
         },
-        replyTicketSuccess: (state, action) => {
+        addCommentSuccess: (state, action) => {
             state.isLoading = false;
             state.error = "";
             state.replyMsg = action.payload;
         },
-        replyTicketFail: (state, action) => {
+        addCommentFail: (state, action) => {
             state.isLoading = false;
-            state.replyTicketError = action.payload;
+            state.replyPostError = action.payload;
         },
         closePostLoading: (state) => {
             state.isLoading = true;
@@ -88,9 +88,14 @@ const postListSlice = createSlice({
             state.isLoading = true;
         },
         closeCommentSuccess: (state, action) => {
+            const { id, message } = action.payload;
             state.isLoading = false;
             state.error = "";
-            state.comment = action.payload;
+            state.replyMsg = message ;
+            state.selectedPost = {
+                ...state.selectedPost,
+                comments: state.selectedPost.comments.filter(c => c.com_id !== id)
+            };
         },
         closeCommentFail: (state, action) => {
             state.isLoading = false;
@@ -118,9 +123,9 @@ export const {
     fetchRelatedPostLoading,
     fetchRelatedPostSuccess,
     fetchRelatedPostFail,
-    replyTicketLoading,
-    replyTicketSuccess,
-    replyTicketFail,
+    addCommentLoading,
+    addCommentSuccess,
+    addCommentFail,
     closePostLoading,
     closePostSuccess,
     closePostFail,

@@ -55,27 +55,6 @@ export const getRelatedPost = (id) => {
 }
 
 
-export const updateReplyPost = (id, msgObj) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const result = await axios.post('http://ticket.salmanaziz.tech/api/v1/ticket/singleticketmessageinsert.php?id='+id,
-            {
-                headers:{
-                    "content-type": "application/json; charset=UTF-8",
-                    Authorization: sessionStorage.getItem("authToken"),
-                },
-                msgObj,
-            });
-            
-            //console.log(result.data);
-            resolve(result.data);
-        } catch (error) {
-            console.log(error.message)
-            reject(error)
-        }
-    })
-}
-
 // PUBLISH OR UNPUBLISH POST
 export const updatePostStatusClosed = (id) => {
     return new Promise(async (resolve, reject) => {
@@ -115,6 +94,29 @@ export const updateCommentStatusClosed = (id) => {
         }
     })
 }
+
+// Add A Reply to A Comment Using Form
+export const addCommentPost = (id, msgObj) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/singletpostmessageinsert.php?id='+id,
+            {
+                headers:{
+                    "content-type": "application/json; charset=UTF-8",
+                    Authorization: sessionStorage.getItem("authToken"),
+                },
+                msgObj,
+            });
+            
+            //console.log(result.data);
+            resolve(result.data);
+        } catch (error) {
+            console.log(error.message)
+            reject(error)
+        }
+    })
+}
+
 
 export const createNewPost = (frmData) => {
     return new Promise(async (resolve, reject) => {

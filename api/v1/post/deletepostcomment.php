@@ -15,7 +15,7 @@ try{
 	$query = $conn->prepare($sql);
 	$results = $query->execute();
 	if($results){
-		echo json_encode(array("status" => "success", "message" => 'Comment successfully removed'));
+		echo json_encode(array("status" => "success", "message" => 'Comment successfully removed', "id" => $com_id));
 	}
 	else{
 		echo json_encode(array("status" => "success", "message" => 'Something went wrong'));

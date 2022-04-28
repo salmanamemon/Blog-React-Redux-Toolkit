@@ -9,9 +9,9 @@ import {
     fetchRelatedPostLoading,
     fetchRelatedPostSuccess,
     fetchRelatedPostFail,
-    replyTicketLoading,
-    replyTicketSuccess,
-    replyTicketFail,
+    addCommentLoading,
+    addCommentSuccess,
+    addCommentFail,
     closePostLoading,
     closePostSuccess,
     closePostFail,
@@ -20,7 +20,7 @@ import {
     closeCommentFail
 } from './postsSlice';
 
-import { getAllPosts, getSinglePost, getRelatedPost, updatePostStatusClosed, updateCommentStatusClosed } from './postsApi';
+import { getAllPosts, getSinglePost, getRelatedPost, updatePostStatusClosed, updateCommentStatusClosed, addCommentPost } from './postsApi';
 
 export const fetchAllPosts = () => async (dispatch) => {
     dispatch(fetchPostLoading());
@@ -68,25 +68,7 @@ export const fetchRelatedPost = (id) => async (dispatch) => {
     }
 }
 
-// Action For Replying on single Ticket
-// export const replyOnTicket = (id, msgObj) => async (dispatch) => {
-//     dispatch(replyTicketLoading());
-//     // Fetch the Data From API
-//     try{
-//         const result = await updateReplyTicket(id, msgObj);
 
-//         console.log(result.status);
-//         if(result.status === "error"){
-//           return dispatch(replyTicketFail(result.message));
-//         }
-//         dispatch(fetchSingleTicket(id));
-//         dispatch(replyTicketSuccess(result.message));
-        
-//     } catch(error){
-//         console.log(error)
-//         dispatch(replyTicketFail(error));
-//     }
-// }
 
 // Action For Replying on single Ticket
 export const closePost = (id) => async (dispatch) => {
@@ -117,13 +99,33 @@ export const closeComment = (id) => async (dispatch) => {
 
         console.log(result.status);
         if(result.status === "error"){
-          return dispatch(closeCommentFail(result.message));
+          return dispatch(closeCommentFail(result));
         }
         //dispatch(fetchSinglePost(id));
-        dispatch(closeCommentSuccess(result.message));
+        dispatch(closeCommentSuccess(result));
         
     } catch(error){
         console.log(error)
         dispatch(closeCommentFail(error));
+    }
+}
+
+// Action For Replying on single Ticket
+export const AddCommentOnPost = (id, msgObj) => async (dispatch) => {
+    dispatch(addCommentLoading());
+    // Fetch the Data From API
+    try{
+        const result = await addCommentPost(id, msgObj);
+
+        console.log(result.status);
+        if(result.status === "error"){
+          return dispatch(addCommentFail(result.message));
+        }
+        dispatch(fetchSinglePost(id));
+        dispatch(addCommentSuccess(result.message));
+        
+    } catch(error){
+        console.log(error)
+        dispatch(addCommentFail(error));
     }
 }

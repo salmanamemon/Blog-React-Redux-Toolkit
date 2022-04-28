@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import { CommentHistory } from "../../components/commenthistory/CommentHistory";
-// import { UpdateTicket } from "../../components/update-ticket/UpdateTicket.comp";
+import { AddPostComment } from "../../components/addpostcomment/AddPostComment";
 import { useParams } from "react-router-dom";
 import { fetchSinglePost, fetchRelatedPost, closePost } from "../../features/post/postsAction";
-//import { resetResponseMsg } from "../../features/post/postsSlice";
+import { resetResponseMsg } from "../../features/post/postsSlice";
 import './Posts.css';
 
 
@@ -24,12 +24,11 @@ const AdminPosts = () => {
 
     dispatch(fetchSinglePost(tId))
     dispatch(fetchRelatedPost(tId))
-    //return () => {
+    return () => {
       //(replyMsg ) && dispatch(resetResponseMsg())
-      //(replyMsg || replyPostError) && dispatch(resetResponseMsg())
-    //}
-  },[tId, dispatch]);
-  //, [tId, replyMsg, replyPostError, dispatch]);
+      (replyMsg || replyPostError) && dispatch(resetResponseMsg())
+    }
+  }, [tId, replyMsg, replyPostError, dispatch]);
 
   return (
     <div className="siteSinglePage">
@@ -75,20 +74,23 @@ const AdminPosts = () => {
             </Button>
           </Col>
         </Row>
+        
         <Row className="mt-4">
           <Col md={12}>{selectedPost.comments && <CommentHistory msg={selectedPost.comments} />}</Col>
+        </Row>
+        <Row>
           <Col md={12}>
             {isLoading && <Spinner variant="primary" animation="border" />}
             {error && <Alert variant="danger">{error}</Alert>} 
-            {replyPostError && <Alert variant="danger">{replyPostError}</Alert>} 
             {replyMsg && <Alert variant="success">{replyMsg}</Alert>}
+            {replyPostError && <Alert variant="danger">{replyPostError}</Alert>}
           </Col>
         </Row>
+        
         <hr />
-
         <Row className="mt-4">
           <Col>
-            {/* <UpdateTicket id={tId}/> */}
+            <AddPostComment id={tId}/>
           </Col>
         </Row>
         
