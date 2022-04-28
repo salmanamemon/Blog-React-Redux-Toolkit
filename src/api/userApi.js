@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootURL = 'http://ticket.salmanaziz.tech/api/v1/';
+const rootURL = 'http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/';
 const loginUrl = rootURL+'login.php';
 const userProfileUrl = rootURL+'user.php';
 const logoutUrl = rootURL+'logout.php';

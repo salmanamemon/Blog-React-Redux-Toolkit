@@ -17,7 +17,7 @@ import { Form, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 //   detail: false,
 // };
 
-const AddTicketForm = () => {
+const AddPostForm = () => {
   // const dispatch = useDispatch();
   // const { user } = useSelector(state => state.user);
   // const { isLoading, error, successMsg } = useSelector((state) => state.openTicket);
@@ -63,7 +63,7 @@ const AddTicketForm = () => {
   //console.log(frmData);
   return (
     <div className="mt-3 add-new-ticket bg-light">
-      <h1 className="text-info text-center">Add New Ticket</h1>
+      <h1 className="text-info text-center">Add New Post</h1>
       {/* <hr />
       <div>
         {error && <Alert variant="danger">{error}</Alert>}
@@ -124,4 +124,4 @@ const AddTicketForm = () => {
   );
 };
 
-export default AddTicketForm
+export default AddPostForm

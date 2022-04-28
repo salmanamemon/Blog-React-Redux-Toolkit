@@ -4,11 +4,11 @@ import { useDispatch } from "react-redux";
 import { fetchAllPosts } from "../../features/post/postsAction";
 
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { SearchForm } from "../../components/search-form/SearchForm.comp";
 import PostTable from "../../components/posttable/PostTable.comp";
 import { Link } from "react-router-dom";
 
-const bgimage = "../../uploads/blogimage.jpg";
+// import { SearchForm } from "../../components/search-form/SearchForm.comp";
+//const bgimage = "../../uploads/blogimage.jpg";
 
 export const Dashboard = () => {
 
@@ -26,12 +26,12 @@ export const Dashboard = () => {
         <Container>
           <Row className="mt-4">
             <Col>
-              <Link to="/add-ticket">
-                <Button variant="info">Add New Ticket</Button>
+              <Link to="/add-post">
+                <Button variant="info">Add New Post</Button>
               </Link>
             </Col>
             <Col className="text-right">
-              <SearchForm  />
+              {/* <SearchForm  /> */}
             </Col>
           </Row>
           <hr />

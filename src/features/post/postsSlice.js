@@ -4,10 +4,11 @@ const initialState = {
     posts: [],
     isLoading: false,
     error: "",
-    replyTicketError: "",
+    replyPostError: "",
     searchPostList: [],
     selectedPost: {},
     relatedPost: [],
+    comment: "",
     replyMsg: "",
 }
 
@@ -71,21 +72,33 @@ const postListSlice = createSlice({
             state.isLoading = false;
             state.replyTicketError = action.payload;
         },
-        closeTicketLoading: (state) => {
+        closePostLoading: (state) => {
             state.isLoading = true;
         },
-        closeTicketSuccess: (state, action) => {
+        closePostSuccess: (state, action) => {
             state.isLoading = false;
             state.error = "";
             state.replyMsg = action.payload;
         },
-        closeTicketFail: (state, action) => {
+        closePostFail: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+        closeCommentLoading: (state) => {
+            state.isLoading = true;
+        },
+        closeCommentSuccess: (state, action) => {
+            state.isLoading = false;
+            state.error = "";
+            state.comment = action.payload;
+        },
+        closeCommentFail: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
         resetResponseMsg: (state) => {
             state.isLoading = false;
-            state.replyTicketError = "";
+            state.replyPostError = "";
             state.replyMsg = "";
         },
     },
@@ -108,9 +121,12 @@ export const {
     replyTicketLoading,
     replyTicketSuccess,
     replyTicketFail,
-    closeTicketLoading,
-    closeTicketSuccess,
-    closeTicketFail,
+    closePostLoading,
+    closePostSuccess,
+    closePostFail,
+    closeCommentLoading,
+    closeCommentSuccess,
+    closeCommentFail,
     resetResponseMsg,
 } = actions;
 

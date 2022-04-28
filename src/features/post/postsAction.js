@@ -12,12 +12,15 @@ import {
     replyTicketLoading,
     replyTicketSuccess,
     replyTicketFail,
-    closeTicketLoading,
-    closeTicketSuccess,
-    closeTicketFail
+    closePostLoading,
+    closePostSuccess,
+    closePostFail,
+    closeCommentLoading,
+    closeCommentSuccess,
+    closeCommentFail
 } from './postsSlice';
 
-import { getAllPosts, getSinglePost, getRelatedPost } from './postsApi';
+import { getAllPosts, getSinglePost, getRelatedPost, updatePostStatusClosed, updateCommentStatusClosed } from './postsApi';
 
 export const fetchAllPosts = () => async (dispatch) => {
     dispatch(fetchPostLoading());
@@ -86,21 +89,41 @@ export const fetchRelatedPost = (id) => async (dispatch) => {
 // }
 
 // Action For Replying on single Ticket
-// export const closeTicket = (id) => async (dispatch) => {
-//     dispatch(closeTicketLoading());
-//     // Fetch the Data From API
-//     try{
-//         const result = await updateTicketStatusClosed(id);
+export const closePost = (id) => async (dispatch) => {
+    dispatch(closePostLoading());
+    // Fetch the Data From API
+    try{
+        const result = await updatePostStatusClosed(id);
 
-//         console.log(result.status);
-//         if(result.status === "error"){
-//           return dispatch(closeTicketFail(result.message));
-//         }
-//         dispatch(fetchSingleTicket(id));
-//         dispatch(closeTicketSuccess(result.message));
+        console.log(result.status);
+        if(result.status === "error"){
+          return dispatch(closePostFail(result.message));
+        }
+        dispatch(fetchSinglePost(id));
+        dispatch(closePostSuccess(result.message));
         
-//     } catch(error){
-//         console.log(error)
-//         dispatch(closeTicketFail(error));
-//     }
-// }
+    } catch(error){
+        console.log(error)
+        dispatch(closePostFail(error));
+    }
+}
+
+// Action For Replying on single Ticket
+export const closeComment = (id) => async (dispatch) => {
+    dispatch(closeCommentLoading());
+    // Fetch the Data From API
+    try{
+        const result = await updateCommentStatusClosed(id);
+
+        console.log(result.status);
+        if(result.status === "error"){
+          return dispatch(closeCommentFail(result.message));
+        }
+        //dispatch(fetchSinglePost(id));
+        dispatch(closeCommentSuccess(result.message));
+        
+    } catch(error){
+        console.log(error)
+        dispatch(closeCommentFail(error));
+    }
+}

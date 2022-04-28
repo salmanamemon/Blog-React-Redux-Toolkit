@@ -1,0 +1,43 @@
+.bannerFull {
+    height: calc(100vh - 66px);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.bannerFull.bannerInnerPages {
+    height: 300px;
+}
+.overlay:after {
+    content: '';
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+.bannerFull .row{
+    position: relative;
+    z-index: 1;
+}
+.bannerFull h1{
+    color: #fff;
+}
+
+
+.bannerFull h1 {
+    font-size: 2rem;
+    color: #fff;
+}
+@media (min-width: 992px){
+    .bannerFull h1 {
+        font-size: 5rem;
+    }
+}

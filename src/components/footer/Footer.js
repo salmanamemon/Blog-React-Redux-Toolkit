@@ -7,7 +7,7 @@ import { FacebookFilled, TwitterSquareFilled, InstagramFilled, MailFilled  } fro
 
 export default function Footer() {
   return (
-    <footer class="site-footer">
+    <footer className="site-footer">
       <Container>
         <Row>
           <Col md={4}>

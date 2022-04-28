@@ -76,10 +76,31 @@ export const updateReplyPost = (id, msgObj) => {
     })
 }
 
+// PUBLISH OR UNPUBLISH POST
 export const updatePostStatusClosed = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const result = await axios.post('http://ticket.salmanaziz.tech/api/v1/ticket/singleticketupdatestatus.php?id='+id,
+            const result = await axios.post('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/singlepostupdatestatus.php?id='+id,
+            {
+                headers:{
+                    Authorization: sessionStorage.getItem("authToken"),
+                },
+            });
+            
+            //console.log(result.data);
+            resolve(result.data);
+        } catch (error) {
+            console.log(error.message)
+            reject(error)
+        }
+    })
+}
+
+// PUBLISH OR UNPUBLISH COMMENT
+export const updateCommentStatusClosed = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/deletepostcomment.php?id='+id,
             {
                 headers:{
                     Authorization: sessionStorage.getItem("authToken"),

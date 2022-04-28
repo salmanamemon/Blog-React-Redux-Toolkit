@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import "./Subscribe.Comp.css";
 
 

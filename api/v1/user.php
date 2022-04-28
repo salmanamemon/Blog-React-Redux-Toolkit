@@ -22,6 +22,10 @@ try{
 				"id" => $row['id'],
 				"name" => $row['name'], 
 				"email" => $row['email'],
+				"role" => $row['roles'],
+				"company" => $row['company'],
+				"address" => $row['address'],
+				"phone" => $row['phone'],
 			));
 		}
 	}

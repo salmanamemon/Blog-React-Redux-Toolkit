@@ -69,17 +69,28 @@ export default function Header() {
                     <LinkContainer to="Contact">
                         <Nav.Link>Contact</Nav.Link>
                     </LinkContainer>
-
                     {
-                        isAuth === true ?
-                        <NavDropdown title={user.name} id="collasible-nav-dropdown">
-                            <NavDropdown.Item as={Link} to="Dashboard">
-                                Dashboard
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item onClick={logMeOut}>Logout</NavDropdown.Item>
-                        </NavDropdown>
-                        :
+                        isAuth === true ? 
+                            user.role === '0' ? 
+                                <NavDropdown title={user.name} id="collasible-nav-dropdown">
+                                    <NavDropdown.Item as={Link} to="Dashboard">
+                                        Dashboard
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to="Profile">
+                                        Profile
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={logMeOut}>Logout</NavDropdown.Item>
+                                </NavDropdown>
+                                :
+                                <NavDropdown title={user.name} id="collasible-nav-dropdown">
+                                    <NavDropdown.Item as={Link} to="Profile">
+                                        Profile
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={logMeOut}>Logout</NavDropdown.Item>
+                                </NavDropdown>
+                        : 
                         <Nav.Link  variant="primary" to="Login" onClick={handleModelOpen}>Login</Nav.Link>
                     }
                 </Nav>

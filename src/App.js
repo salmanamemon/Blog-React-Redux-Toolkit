@@ -11,7 +11,9 @@ import Posts from "./pages/post/Posts";
 import Dashboard from "./pages/dashboard/Dashboard";
 import PageNotFound from './pages/pagenotfound/PageNotFound';
 import Blogs from './pages/blogs/Blogs';
-import AddTicket from './components/add-ticket-form/AddTicketForm.comp';
+import Profile from './components/profile/Profile.comp';
+import AdminPosts from './pages/postadmin/AdminPosts';
+import AddPostForm from './components/add-ticket-form/AddPostForm.comp';
 
 function App() {
   const { isAuth } = useSelector((state) => state.login);
@@ -26,7 +28,10 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route path="/post/:tId" element={<Posts />} />
           { isAuth ? <Route exact path="/dashboard" element={<Dashboard />} /> : ""  }
-          { isAuth ? <Route exact path="/add-ticket" element={<AddTicket />} /> : ""  }
+          { isAuth ? <Route exact path="/add-post" element={<AddPostForm />} /> : ""  }
+          { isAuth ? <Route exact path="/profile" element={<Profile />} /> : ""  }
+          { isAuth ? <Route exact path="/adminpost/:tId" element={<AdminPosts />} /> : ""  }
+          /adminpost
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
