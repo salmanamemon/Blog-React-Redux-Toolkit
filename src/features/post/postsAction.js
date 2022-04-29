@@ -17,7 +17,7 @@ import {
     closePostFail,
     closeCommentLoading,
     closeCommentSuccess,
-    closeCommentFail
+    closeCommentFail,
 } from './postsSlice';
 
 import { getAllPosts, getSinglePost, getRelatedPost, updatePostStatusClosed, updateCommentStatusClosed, addCommentPost } from './postsApi';

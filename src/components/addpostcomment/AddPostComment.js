@@ -29,8 +29,8 @@ export const AddPostComment = ({id}) => {
     <>
       
       <Form onSubmit={handleOnSubmit}>
-        <Form.Label>Reply</Form.Label>
-        <Form.Text>Please reply your message here or update the ticket</Form.Text>
+        <Form.Label>Comment:  </Form.Label>
+        <Form.Text>  Please reply your message here or update the ticket</Form.Text>
         <Form.Control
           value={comment}
           onChange={handleOnChange}

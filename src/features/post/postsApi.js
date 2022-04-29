@@ -121,7 +121,7 @@ export const addCommentPost = (id, msgObj) => {
 export const createNewPost = (frmData) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const result = await axios.post('http://ticket.salmanaziz.tech/api/v1/ticket/singleticketinsert.php',
+            const result = await axios.post('http://localhost/a)redux-toolkit-with-projects/blog-redux-01/api/v1/post/singlepostinsert.php',
                 {
                     headers:{
                         Authorization: sessionStorage.getItem("authToken"),

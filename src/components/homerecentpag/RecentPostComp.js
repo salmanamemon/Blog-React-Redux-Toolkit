@@ -10,10 +10,11 @@ const PER_PAGE = 6;
 
 const PaginatedItems = ({ itemsPerPage }) => {
   // We start with an empty list of items.
-  const {searchPostList, isLoading, error} = useSelector((state)=>state.posts);
   const [currentPage, setCurrentPage] = useState(0);
+  const {searchPostList} = useSelector((state)=>state.posts);
+  
   const items = searchPostList;
-  console.log(items);
+  //console.log(items);
 
   // Invoke when user click to request another page.
   function handlePageClick({selected: selectedPage}) {

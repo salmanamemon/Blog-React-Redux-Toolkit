@@ -51,7 +51,7 @@ section.heroBanner ul li:nth-child(4) {
 }
 section.heroBanner ul li:last-child {
     height: 410px;
-    margin-left: 10px;
+    left: 1%;
     width: 31.5%;
 }
 .heroBannerInner {
@@ -86,17 +86,18 @@ section.heroBanner ul li:last-child {
     font-weight: 300;
 }
 
-@media (max-wdith:580px) {
-    section.heroBanner ul li:nth-child(2), 
-    section.heroBanner ul li:nth-child(3), 
-    section.heroBanner ul li:nth-child(4), 
+@media only screen and (max-width: 812px) {
+    section.heroBanner ul li {
+        width: 100%!important;
+        position: relative!important;
+        float: none;
+        left: 0!important;
+        top: 0!important;
+        height: 200px!important;
+        margin-bottom: 10px;
+    }
+
     section.heroBanner ul li:last-child {
-        position: relative;
-        left: auto;
-        right: auto;
-        top: auto;
-        bottom: auto;
-        height: 200px;
-        width: 100%;
+        margin-bottom: 0px!important;
     }
 }

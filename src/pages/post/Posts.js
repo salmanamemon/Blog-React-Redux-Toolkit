@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Image, Button, Spinner, Alert } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import { CommentHistory } from "../../components/commenthistory/CommentHistory";
-// import { UpdateTicket } from "../../components/update-ticket/UpdateTicket.comp";
+import { AddPostComment } from "../../components/addpostcomment/AddPostComment";
 import { useParams } from "react-router-dom";
 import { fetchSinglePost, fetchRelatedPost } from "../../features/post/postsAction";
-//import { fetchSinglePost, closeTicket } from "../../features/post/postsAction";
-//import { resetResponseMsg } from "../ticket-list/ticketsSlice";
+import { resetResponseMsg } from "../../features/post/postsSlice";
 import './Posts.css';
 import RelatedPosts from "../../components/relatedposts/RelatedPostComp";
 
@@ -15,8 +14,9 @@ const Posts = () => {
 
   const { tId } = useParams();
   const dispatch = useDispatch();
-  const { isLoading, error, selectedPost, relatedPost, replyMsg, replyTicketError } = useSelector((state)=>state.posts);
-  const catArray = selectedPost.category;
+  const { isLoading, error, selectedPost, replyMsg, replyPostError } = useSelector((state)=>state.posts);
+ // const catArray = selectedPost.category;
+  // const bgimage = "../../uploads/blogimage.jpg";
 
   //console.log('TID'+tId);
 
@@ -24,12 +24,11 @@ const Posts = () => {
 
     dispatch(fetchSinglePost(tId))
     dispatch(fetchRelatedPost(tId))
-
-    // return () => {
-    //   (replyMsg || replyPostError) && dispatch(resetResponseMsg())
-    // }
-  },[tId, dispatch]);
-  //, [tId, replyMsg, replyPostError, dispatch]);
+    return () => {
+      //(replyMsg ) && dispatch(resetResponseMsg())
+      (replyMsg || replyPostError) && dispatch(resetResponseMsg())
+    }
+  }, [tId, replyMsg, replyPostError, dispatch]);
 
   return (
     <div className="siteSinglePage">
@@ -74,20 +73,30 @@ const Posts = () => {
           </Col>
           {/* <Col className="text-right">
             <Button 
+              className="text-capitalize"
               variant="outline-info" 
-              onClick={() => dispatch(closeTicket(tId))}
-              disabled={selectedTicket.status === "closed"}
-            >Close Ticket</Button>
+              onClick={() => dispatch(closePost(tId))}
+              //disabled={selectedPost.status === "unpublished"}
+            >Post {selectedPost.status === "published" ? "published" : 'unpublished'}
+            </Button>
           </Col> */}
         </Row>
-        <Row className="mt-4">
+        <Row className="mt-4" md={12}>
           <Col>{selectedPost.comments && <CommentHistory msg={selectedPost.comments} />}</Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            {isLoading && <Spinner variant="primary" animation="border" />}
+            {error && <Alert variant="danger">{error}</Alert>} 
+            {replyMsg && <Alert variant="success">{replyMsg}</Alert>}
+            {replyPostError && <Alert variant="danger">{replyPostError}</Alert>}
+          </Col>
         </Row>
         <hr />
 
         <Row className="mt-4">
           <Col>
-            {/* <UpdateTicket id={tId}/> */}
+            <AddPostComment id={tId}/>
           </Col>
         </Row>
         

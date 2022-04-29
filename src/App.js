@@ -13,10 +13,11 @@ import PageNotFound from './pages/pagenotfound/PageNotFound';
 import Blogs from './pages/blogs/Blogs';
 import Profile from './components/profile/Profile.comp';
 import AdminPosts from './pages/postadmin/AdminPosts';
-import AddPostForm from './components/add-ticket-form/AddPostForm.comp';
+import AddPostForm from './components/add-post-form/AddPostForm.comp';
 
 function App() {
   const { isAuth } = useSelector((state) => state.login);
+  const { user } = useSelector((state) => state.user);
   return (
     <div className="App">
       <Router>
@@ -27,11 +28,34 @@ function App() {
           <Route exact path="/blogs" element={<Blogs />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route path="/post/:tId" element={<Posts />} />
-          { isAuth ? <Route exact path="/dashboard" element={<Dashboard />} /> : ""  }
-          { isAuth ? <Route exact path="/add-post" element={<AddPostForm />} /> : ""  }
+          { 
+            isAuth ? 
+              user.role === '0' ?
+                <Route exact path="/dashboard" element={<Dashboard />} />
+                : 
+                '' 
+              : 
+            ''
+          }
+          { 
+            isAuth ? 
+              user.role === '0' ?
+                <Route exact path="/add-post" element={<AddPostForm />} />
+                : 
+                '' 
+              : 
+            ''
+          }
+          { 
+            isAuth ? 
+              user.role === '0' ?
+                <Route exact path="/adminpost/:tId" element={<AdminPosts />} />
+                : 
+                '' 
+              : 
+            ''
+          }
           { isAuth ? <Route exact path="/profile" element={<Profile />} /> : ""  }
-          { isAuth ? <Route exact path="/adminpost/:tId" element={<AdminPosts />} /> : ""  }
-          /adminpost
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />

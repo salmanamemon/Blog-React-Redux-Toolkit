@@ -9,6 +9,7 @@ const initialState = {
     selectedPost: {},
     relatedPost: [],
     replyMsg: "",
+    successMsg: '',
 }
 
 const postListSlice = createSlice({
@@ -106,6 +107,21 @@ const postListSlice = createSlice({
             state.replyPostError = "";
             state.replyMsg = "";
         },
+        openNewPostPending:(state)=>{
+            state.isLoading = true
+        },
+        openNewPostSuccess:(state, action)=>{
+            state.isLoading = false
+            state.successMsg = action.payload
+        },
+        openNewPostFail:(state, action)=>{
+            state.isLoading = false
+            state.error = action.payload
+        },
+        openNewPostResetSuccess:(state)=>{
+            state.isLoading = false
+            state.successMsg = ''
+        },
     },
 });
 
@@ -133,6 +149,11 @@ export const {
     closeCommentSuccess,
     closeCommentFail,
     resetResponseMsg,
+    openNewPostPending,
+    openNewPostSuccess,
+    openNewPostFail,
+    openNewPostResetSuccess,
+
 } = actions;
 
 export default reducer;

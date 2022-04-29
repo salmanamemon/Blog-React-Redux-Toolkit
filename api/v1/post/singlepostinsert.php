@@ -9,49 +9,49 @@ include("../config.php");
 try{
 	
 	//Initialize variable
-	$status = 'pending';
+	$status = 'unpublished';
 
 	// Grab JSON object from Form
 	$data = json_decode(file_get_contents('php://input'), true);
 	// Grab Your Value from Json object
-	$dataSub=json_encode($data['frmData']['subject']);
+	$dataTit=json_encode($data['frmData']['title']);
 	// Replace quotes form the data
-	$subject=str_replace('"',"",$dataSub);
+	$title=str_replace('"',"",$dataTit);
 	// Grab Your Value from Json object
-	$dataDetail=json_encode($data['frmData']['detail']);
+	$dataText=json_encode($data['frmData']['text']);
 	// Replace quotes form the data
-	$detail=str_replace('"',"",$dataDetail);
+	$text=str_replace('"',"",$dataText);
 	// Grab Your Value from Json object
-	$dataDate=json_encode($data['frmData']['issueDate']);
+	$dataAuthorId=json_encode($data['frmData']['authorid']);
 	// Replace quotes form the data
-	$openAt=str_replace('"',"",$dataDate);
+	$authorId=str_replace('"',"",$dataAuthorId);
 	// Grab Your Value from Json object
-	$dataEmail=json_encode($data['frmData']['email']);
+	$dataCatId=json_encode($data['frmData']['cat_id']);
 	// Replace quotes form the data
-	$email=str_replace('"',"",$dataEmail);
+	$catId=str_replace('"',"",$dataCatId);
 
-	if($subject === '' || $detail === '' || $openAt === '' || $email === '' ){
+	if($title === '' || $text === '' || $authorId === '' || $catId === '' ){
 		echo json_encode(array("status" => "error", "message" => 'Some fields are empty'));
 	}
 	else{
 	
-		$sqlU = "INSERT INTO tickets
+		$sqlU = "INSERT INTO posts
 		SET 
-		subject=:subject, 
-		status=:status,
-		sender=:sender,
-		detail=:detail,
-		openAt=:openAt";
+		title=:title, 
+		text=:text,
+		authorId=:authorId,
+		catId=:catId,
+		status=:status";
 
 		$queryU = $conn->prepare($sqlU);
-		$queryU->bindParam(':subject', $subject);
+		$queryU->bindParam(':title', $title);
+		$queryU->bindParam(':text', $text);
+		$queryU->bindParam(':authorId', $authorId);
+		$queryU->bindParam(':catId', $catId);
 		$queryU->bindParam(':status', $status);
-		$queryU->bindParam(':sender', $email);
-		$queryU->bindParam(':detail', $detail);
-		$queryU->bindParam(':openAt', $openAt);
 		if($queryU->execute())
 		{
-			echo json_encode(array("status" => "success", "message" => 'Ticket added Successfully'));
+			echo json_encode(array("status" => "success", "message" => 'Post added Successfully'));
 		}
 		else
 		{

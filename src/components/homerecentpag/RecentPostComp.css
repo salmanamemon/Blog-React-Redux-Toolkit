@@ -64,3 +64,16 @@ li.pagination__link--active {
 li.pagination__link--disabled {
     background-color: #aaa;
 }
+
+@media only screen and (max-width: 767px) {
+    section.recentPosts {
+        padding-top: 50px;
+    }
+
+    section.recentPosts .mb-5 {
+        margin-bottom: 1rem!important;
+    }
+    .postInner {
+        margin-bottom: 20px;
+    }
+}
